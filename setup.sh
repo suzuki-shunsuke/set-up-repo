@@ -4,7 +4,12 @@ set -euo pipefail
 
 repo=$1
 
+info() {
+    echo "[INFO] $1" >&2
+}
+
 # Configure the repository
+info "Configuring repository $repo"
 curl -L \
   -X PATCH \
   -H "Accept: application/vnd.github+json" \
@@ -24,6 +29,7 @@ curl -L \
 # Create Rulesets
 # main
 # Protect the default branch
+info "Creating a repository ruleset main"
 curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
@@ -70,6 +76,7 @@ curl -L \
 
 # require_sign
 # Require sign on all branches
+info "Creating a repository ruleset require_sign"
 curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
@@ -98,6 +105,7 @@ curl -L \
 # forbid_tag_change
 # Forbid to update and delete tags
 # And require signed commits
+info "Creating a repository ruleset forbid_tag_change"
 curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
@@ -131,6 +139,7 @@ curl -L \
 
 # forbid_tag_creation
 # Allow only repository admin to create tags 
+info "Creating a repository ruleset forbid_tag_creation"
 curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \

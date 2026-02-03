@@ -63,7 +63,6 @@ curl -L \
           "require_code_owner_review": false,
           "require_last_push_approval": false,
           "required_review_thread_resolution": false,
-          "automatic_copilot_code_review_enabled": false,
           "allowed_merge_methods": [
             "merge",
             "squash",
@@ -138,7 +137,7 @@ curl -L \
 }'
 
 # forbid_tag_creation
-# Allow only repository admin to create tags 
+# Allow only repository admin to create tags
 info "Creating a repository ruleset forbid_tag_creation"
 curl -L \
   -X POST \

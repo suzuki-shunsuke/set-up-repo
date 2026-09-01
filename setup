@@ -26,6 +26,33 @@ curl -L \
     "allow_update_branch": true
   }'
 
+# Enable immutable releases
+info "Enabling immutable releases"
+curl -L \
+  -X PUT \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer $(gh auth token)" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  "https://api.github.com/repos/$repo/immutable-releases"
+
+# Enable Dependabot alerts
+info "Enabling Dependabot alerts"
+curl -L \
+  -X PUT \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer $(gh auth token)" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  "https://api.github.com/repos/$repo/vulnerability-alerts"
+
+# Enable private vulnerability reporting
+info "Enabling private vulnerability reporting"
+curl -L \
+  -X PUT \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer $(gh auth token)" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  "https://api.github.com/repos/$repo/private-vulnerability-reporting"
+
 # Create Rulesets
 # main
 # Protect the default branch
